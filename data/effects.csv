@@ -1,0 +1,21 @@
+study,estimate,lower,upper,era,panel,unit,scaling,study_url
+Walley 2013 — lower-intensity OEND,-27.0,-43.0,-9.0,Mostly pre-2015,Relative (%),percent,As reported,https://www.bmj.com/content/346/bmj.f174
+Walley 2013 — higher-intensity OEND,-46.0,-61.0,-24.0,Mostly pre-2015,Relative (%),percent,As reported,https://www.bmj.com/content/346/bmj.f174
+Rees et al. 2019,-9.0,-16.0,-2.0,Mostly pre-2015,Relative (%),percent,As reported,https://chicagounbound.uchicago.edu/jle/vol62/iss1/1/
+Cataife et al. 2021†,-0.2,-20.5,25.3,Mostly pre-2015,Relative (%),percent,As reported,https://pubmed.ncbi.nlm.nih.gov/31951788/
+McClellan et al. 2018,-14.0,-22.0,-1.0,Mostly pre-2015,Relative (%),percent,As reported,https://pubmed.ncbi.nlm.nih.gov/29610001/
+Atkins et al. 2019,10.0,-6.0,29.0,Mostly pre-2015,Relative (%),percent,As reported,https://pmc.ncbi.nlm.nih.gov/articles/PMC6407344/
+Erfanian et al. 2019,3.0,-11.0,18.0,Mostly pre-2015,Relative (%),percent,As reported,https://rrs.scholasticahq.com/article/7932-the-impact-of-naloxone-access-laws-on-opioid-overdose-deaths-in-the-u-s
+Abouk et al. 2019‡,-34.0,-57.5,-10.4,Mostly pre-2015,Relative (%),percent,As reported,https://pmc.ncbi.nlm.nih.gov/articles/PMC6503576/
+Doleac & Mukherjee 2022,1.0,-8.0,10.0,Mostly pre-2015,Relative (%),percent,As reported,https://www.journals.uchicago.edu/doi/10.1086/719588
+Sohn et al. 2023§,-16.0,-28.1,-3.9,Mostly pre-2015,Relative (%),percent,As reported,https://www.sciencedirect.com/science/article/abs/pii/S0749379722005281
+Dowd 2023 — 2018 giveaway,-14.7,-31.0,5.6,Mostly post-2015,Relative (%),percent,As reported,https://onlinelibrary.wiley.com/doi/full/10.1002/hec.4755
+Dowd 2023 — 2019 giveaway,26.7,-1.5,62.9,Mostly post-2015,Relative (%),percent,As reported,https://onlinelibrary.wiley.com/doi/full/10.1002/hec.4755
+HEALing Communities 2024¶,-9.0,-24.0,9.0,Mostly post-2015,Relative (%),percent,As reported,https://www.nejm.org/doi/full/10.1056/NEJMoa2401177
+Freisthler et al. 2024¶,-8.0,-22.0,7.0,Mostly post-2015,Relative (%),percent,As reported,https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2825142
+Duska et al. 2022,-0.05,-0.43,0.33,Balanced around 2015,Annualized absolute,deaths per 100k per year,Annual estimate,https://journals.sagepub.com/doi/10.1177/20503245221112575
+Payne 2026,2.12,-0.6239999999999997,4.864,Mostly post-2015,Annualized absolute,deaths per 100k per year,Annual estimate,https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7279243
+Lee et al. 2021,1.7924,0.836,2.7488,Mostly pre-2015,Annualized absolute,deaths per 100k per year,Quarterly × 4,https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2776301
+Peet et al. 2024 — NAL pre-Narcan,-0.296,-1.0329599999999999,0.44095999999999996,Mostly pre-2015,Annualized absolute,deaths per 100k per year,Quarterly × 4,https://www.nber.org/papers/w33105
+Peet et al. 2024 — Narcan + existing NAL,-0.572,-1.16,0.016000000000000014,Mostly post-2015,Annualized absolute,deaths per 100k per year,Quarterly × 4,https://www.nber.org/papers/w33105
+Peet et al. 2024 — NAL adopted after Narcan,-2.54,-4.04528,-1.03472,Mostly post-2015,Annualized absolute,deaths per 100k per year,Quarterly × 4,https://www.nber.org/papers/w33105
