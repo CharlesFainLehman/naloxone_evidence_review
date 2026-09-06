@@ -77,16 +77,16 @@ Point color indicates whether most of the study's relevant observation period fa
 ## Repository contents
 
 - `data/effects.csv` — final plotted estimates and study URLs.
-- `code/plot_effects.R` — R code that defines the plotted data and regenerates both figures.
+- `code/plot_effects.R` — R code that defines the plotted data, applies the CF house style, and regenerates both figures.
 - `figures/relative_effects.svg` — relative-effect forest plot.
 - `figures/annualized_absolute_effects.svg` — annualized absolute-effect forest plot.
 
 ## Reproducing the figures
 
-The R script requires `dplyr`, `ggplot2`, and `readr`. From the repository root:
+The R script requires `dplyr`, `ggplot2`, `readr`, `scales`, and `ragg`. From the repository root:
 
 ```r
 source("code/plot_effects.R")
 ```
 
-The R script regenerates equivalent PNG versions of the figures under `figures/` and writes a reproduced copy of the plotted data to `data/effects_reproduced.csv`.
+The R script regenerates PNG versions of the figures under `figures/` and writes a reproduced copy of the plotted data to `data/effects_reproduced.csv`.
