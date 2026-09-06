@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="692" viewBox="0 0 1000 692">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,sans-serif;fill:#222}.title{font-size:22px;font-weight:600}.lab{font-size:14px}.tick{font-size:12px;fill:#555}.legend{font-size:12px}</style>
+<text x="500.0" y="32" text-anchor="middle" class="title">Naloxone access and overdose mortality: relative effects</text>
+<line x1="360.0" x2="360.0" y1="60" y2="602" stroke="#ddd" stroke-width="1"/>
+<text x="360.0" y="626" text-anchor="middle" class="tick">-68.0</text>
+<line x1="510.0" x2="510.0" y1="60" y2="602" stroke="#ddd" stroke-width="1"/>
+<text x="510.0" y="626" text-anchor="middle" class="tick">-33.5</text>
+<line x1="660.0" x2="660.0" y1="60" y2="602" stroke="#ddd" stroke-width="1"/>
+<text x="660.0" y="626" text-anchor="middle" class="tick">1.0</text>
+<line x1="810.0" x2="810.0" y1="60" y2="602" stroke="#ddd" stroke-width="1"/>
+<text x="810.0" y="626" text-anchor="middle" class="tick">35.5</text>
+<line x1="960.0" x2="960.0" y1="60" y2="602" stroke="#ddd" stroke-width="1"/>
+<text x="960.0" y="626" text-anchor="middle" class="tick">70.0</text>
+<line x1="655.7" x2="655.7" y1="60" y2="602" stroke="#111" stroke-width="1.5"/>
+<text x="348" y="94.0" text-anchor="end" class="lab">Walley 2013 — lower-intensity OEND</text>
+<line x1="468.7" x2="616.5" y1="89.0" y2="89.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="468.7" x2="468.7" y1="84.0" y2="94.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="616.5" x2="616.5" y1="84.0" y2="94.0" stroke="#2C7FB8" stroke-width="2"/>
+<circle cx="538.3" cy="89.0" r="5" fill="#2C7FB8"/>
+<text x="348" y="132.0" text-anchor="end" class="lab">Walley 2013 — higher-intensity OEND</text>
+<line x1="390.4" x2="551.3" y1="127.0" y2="127.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="390.4" x2="390.4" y1="122.0" y2="132.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="551.3" x2="551.3" y1="122.0" y2="132.0" stroke="#2C7FB8" stroke-width="2"/>
+<circle cx="455.7" cy="127.0" r="5" fill="#2C7FB8"/>
+<text x="348" y="170.0" text-anchor="end" class="lab">Rees et al. 2019</text>
+<line x1="586.1" x2="647.0" y1="165.0" y2="165.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="586.1" x2="586.1" y1="160.0" y2="170.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="647.0" x2="647.0" y1="160.0" y2="170.0" stroke="#2C7FB8" stroke-width="2"/>
+<circle cx="616.5" cy="165.0" r="5" fill="#2C7FB8"/>
+<text x="348" y="208.0" text-anchor="end" class="lab">Cataife et al. 2021†</text>
+<line x1="566.5" x2="765.7" y1="203.0" y2="203.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="566.5" x2="566.5" y1="198.0" y2="208.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="765.7" x2="765.7" y1="198.0" y2="208.0" stroke="#2C7FB8" stroke-width="2"/>
+<circle cx="654.8" cy="203.0" r="5" fill="#2C7FB8"/>
+<text x="348" y="246.0" text-anchor="end" class="lab">McClellan et al. 2018</text>
+<line x1="560.0" x2="651.3" y1="241.0" y2="241.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="560.0" x2="560.0" y1="236.0" y2="246.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="651.3" x2="651.3" y1="236.0" y2="246.0" stroke="#2C7FB8" stroke-width="2"/>
+<circle cx="594.8" cy="241.0" r="5" fill="#2C7FB8"/>
+<text x="348" y="284.0" text-anchor="end" class="lab">Atkins et al. 2019</text>
+<line x1="629.6" x2="781.7" y1="279.0" y2="279.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="629.6" x2="629.6" y1="274.0" y2="284.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="781.7" x2="781.7" y1="274.0" y2="284.0" stroke="#2C7FB8" stroke-width="2"/>
+<circle cx="699.1" cy="279.0" r="5" fill="#2C7FB8"/>
+<text x="348" y="322.0" text-anchor="end" class="lab">Erfanian et al. 2019</text>
+<line x1="607.8" x2="733.9" y1="317.0" y2="317.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="607.8" x2="607.8" y1="312.0" y2="322.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="733.9" x2="733.9" y1="312.0" y2="322.0" stroke="#2C7FB8" stroke-width="2"/>
+<circle cx="668.7" cy="317.0" r="5" fill="#2C7FB8"/>
+<text x="348" y="360.0" text-anchor="end" class="lab">Abouk et al. 2019‡</text>
+<line x1="405.7" x2="610.4" y1="355.0" y2="355.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="405.7" x2="405.7" y1="350.0" y2="360.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="610.4" x2="610.4" y1="350.0" y2="360.0" stroke="#2C7FB8" stroke-width="2"/>
+<circle cx="507.8" cy="355.0" r="5" fill="#2C7FB8"/>
+<text x="348" y="398.0" text-anchor="end" class="lab">Doleac &amp; Mukherjee 2022</text>
+<line x1="620.9" x2="699.1" y1="393.0" y2="393.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="620.9" x2="620.9" y1="388.0" y2="398.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="699.1" x2="699.1" y1="388.0" y2="398.0" stroke="#2C7FB8" stroke-width="2"/>
+<circle cx="660.0" cy="393.0" r="5" fill="#2C7FB8"/>
+<text x="348" y="436.0" text-anchor="end" class="lab">Sohn et al. 2023§</text>
+<line x1="533.5" x2="638.7" y1="431.0" y2="431.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="533.5" x2="533.5" y1="426.0" y2="436.0" stroke="#2C7FB8" stroke-width="2"/>
+<line x1="638.7" x2="638.7" y1="426.0" y2="436.0" stroke="#2C7FB8" stroke-width="2"/>
+<circle cx="586.1" cy="431.0" r="5" fill="#2C7FB8"/>
+<text x="348" y="474.0" text-anchor="end" class="lab">Dowd 2023 — 2018 giveaway</text>
+<line x1="520.9" x2="680.0" y1="469.0" y2="469.0" stroke="#D95F0E" stroke-width="2"/>
+<line x1="520.9" x2="520.9" y1="464.0" y2="474.0" stroke="#D95F0E" stroke-width="2"/>
+<line x1="680.0" x2="680.0" y1="464.0" y2="474.0" stroke="#D95F0E" stroke-width="2"/>
+<circle cx="591.7" cy="469.0" r="5" fill="#D95F0E"/>
+<text x="348" y="512.0" text-anchor="end" class="lab">Dowd 2023 — 2019 giveaway</text>
+<line x1="649.1" x2="929.1" y1="507.0" y2="507.0" stroke="#D95F0E" stroke-width="2"/>
+<line x1="649.1" x2="649.1" y1="502.0" y2="512.0" stroke="#D95F0E" stroke-width="2"/>
+<line x1="929.1" x2="929.1" y1="502.0" y2="512.0" stroke="#D95F0E" stroke-width="2"/>
+<circle cx="771.7" cy="507.0" r="5" fill="#D95F0E"/>
+<text x="348" y="550.0" text-anchor="end" class="lab">HEALing Communities 2024¶</text>
+<line x1="551.3" x2="694.8" y1="545.0" y2="545.0" stroke="#D95F0E" stroke-width="2"/>
+<line x1="551.3" x2="551.3" y1="540.0" y2="550.0" stroke="#D95F0E" stroke-width="2"/>
+<line x1="694.8" x2="694.8" y1="540.0" y2="550.0" stroke="#D95F0E" stroke-width="2"/>
+<circle cx="616.5" cy="545.0" r="5" fill="#D95F0E"/>
+<text x="348" y="588.0" text-anchor="end" class="lab">Freisthler et al. 2024¶</text>
+<line x1="560.0" x2="686.1" y1="583.0" y2="583.0" stroke="#D95F0E" stroke-width="2"/>
+<line x1="560.0" x2="560.0" y1="578.0" y2="588.0" stroke="#D95F0E" stroke-width="2"/>
+<line x1="686.1" x2="686.1" y1="578.0" y2="588.0" stroke="#D95F0E" stroke-width="2"/>
+<circle cx="620.9" cy="583.0" r="5" fill="#D95F0E"/>
+<text x="660.0" y="656" text-anchor="middle" class="lab">Estimated change in overdose mortality (%)</text>
+<circle cx="360" cy="680" r="4" fill="#2C7FB8"/><text x="370" y="684" class="legend">Mostly pre-2015</text>
+<circle cx="540" cy="680" r="4" fill="#D95F0E"/><text x="550" y="684" class="legend">Mostly post-2015</text>
+</svg>
