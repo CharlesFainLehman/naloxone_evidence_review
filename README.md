@@ -25,17 +25,17 @@ Studies report mortality effects on incompatible scales, so the results are show
 
 Risk ratios, rate ratios, and estimates that could be represented on a percent-change scale are shown as percentage changes in overdose mortality. Negative values indicate lower mortality.
 
-![Relative effects](figures/relative_effects.png)
+![Relative effects](figures/relative_effects.svg)
 
 ### Absolute effects
 
 Absolute rate differences are placed on a common annualized scale: deaths per 100,000 per year. Annual estimates are left unchanged; quarterly estimates are multiplied by 4. Monthly estimates would be multiplied by 12, although the final included set contains no monthly estimate after Newman was excluded.
 
-![Annualized absolute effects](figures/annualized_absolute_effects.png)
+![Annualized absolute effects](figures/annualized_absolute_effects.svg)
 
 ## Era coding
 
-Point color indicates whether most of the study’s relevant observation period falls before or after 2015. Studies centered around the cutoff are coded as balanced around 2015. For Peet et al. (2024), the pre-Narcan and post-Narcan estimands are coded according to their actual experimental windows rather than the full 2010–2019 source-data span.
+Point color indicates whether most of the study's relevant observation period falls before or after 2015. Studies centered around the cutoff are coded as balanced around 2015. For Peet et al. (2024), the pre-Narcan and post-Narcan estimands are coded according to their actual experimental windows rather than the full 2010–2019 source-data span.
 
 ## Study table
 
@@ -46,7 +46,7 @@ Point color indicates whether most of the study’s relevant observation period 
 | Rees et al. 2019 | DID / controlled pre-post | Relative (%) | -9.0% | -16.0% to -2.0% | Mostly pre-2015 | State naloxone access laws. | [link](https://chicagounbound.uchicago.edu/jle/vol62/iss1/1/) |
 | Cataife et al. 2021† | Matched staggered DID | Relative (%) | -0.2% | -20.5% to 25.3% | Mostly pre-2015 | Homogeneous nationwide model used for scalar display; authors prefer a heterogeneous dynamic specification. | [link](https://pubmed.ncbi.nlm.nih.gov/31951788/) |
 | McClellan et al. 2018 | DID | Relative (%) | -14.0% | -22.0% to -1.0% | Mostly pre-2015 | State naloxone access laws. | [link](https://pubmed.ncbi.nlm.nih.gov/29610001/) |
-| Atkins et al. 2019 | Controlled pre-post | Relative (%) | 10.0% | -6.0% to 29.0% | Mostly pre-2015 | NAL estimate is secondary to the paper’s Good Samaritan-law analysis. | [link](https://pmc.ncbi.nlm.nih.gov/articles/PMC6407344/) |
+| Atkins et al. 2019 | Controlled pre-post | Relative (%) | 10.0% | -6.0% to 29.0% | Mostly pre-2015 | NAL estimate is secondary to the paper's Good Samaritan-law analysis. | [link](https://pmc.ncbi.nlm.nih.gov/articles/PMC6407344/) |
 | Erfanian et al. 2019 | Spatial quasi-experimental model | Relative (%) | 3.0% | -11.0% to 18.0% | Mostly pre-2015 | Spatial quasi-experimental specification; less directly comparable to standard DID estimates. | [link](https://rrs.scholasticahq.com/article/7932-the-impact-of-naloxone-access-laws-on-opioid-overdose-deaths-in-the-u-s) |
 | Abouk et al. 2019‡ | DID / event study | Relative (%) | -34.0% | -57.5% to -10.4% | Mostly pre-2015 | Direct-pharmacist-authority estimate; percentage CI derived from reported absolute CI and comparison mean. | [link](https://pmc.ncbi.nlm.nih.gov/articles/PMC6503576/) |
 | Doleac & Mukherjee 2022 | DID / panel FE | Relative (%) | 1.0% | -8.0% to 10.0% | Mostly pre-2015 | Numeric RR comes from the study version summarized in Smart et al.; final publication reports no measurable mortality reduction. | [link](https://www.journals.uchicago.edu/doi/10.1086/719588) |
@@ -65,21 +65,21 @@ Point color indicates whether most of the study’s relevant observation period 
 ## Important coding notes
 
 - **Cataife et al. (2021):** the plotted scalar is the homogeneous nationwide model. The authors prefer a dynamic specification with region/year heterogeneity and caution against treating a single average treatment effect as universally meaningful.
-- **Abouk et al. (2019):** the displayed percent effect uses the paper’s longer-run direct-pharmacist-authority estimate. The percentage CI is derived from the absolute CI using the reported comparison mean.
+- **Abouk et al. (2019):** the displayed percent effect uses the paper's longer-run direct-pharmacist-authority estimate. The percentage CI is derived from the absolute CI using the reported comparison mean.
 - **Doleac & Mukherjee (2022):** the numeric RR displayed here comes from the study version synthesized in Smart et al. (2021); the final publication supports the qualitative null-mortality conclusion.
-- **Sohn et al. (2023):** the plotted percentage CI is derived from the reported absolute CI and the paper’s stated 16% effect magnitude.
+- **Sohn et al. (2023):** the plotted percentage CI is derived from the reported absolute CI and the paper's stated 16% effect magnitude.
 - **Dowd (2023):** the two Pennsylvania giveaways are shown separately because the paper reports opposite-signed event-specific estimates; the pooled analysis is not statistically significant.
 - **HEALing Communities / Freisthler (2024):** these are two publications from the same cluster-randomized trial, not independent experiments. The intervention included naloxone distribution, medications for opioid use disorder, and safer opioid prescribing, so it does not identify a naloxone-only effect.
 - **Payne (2026):** the preferred adjusted full-sample mortality coefficient is +2.12 opioid-related deaths per 100,000 per year (SE 1.40). The CI in the data/plot is computed as ±1.96 SE.
 - **Peet et al. (2024):** the three plotted absolute estimates use the +LASSO specification in Table 3. Quarterly coefficients and confidence intervals are multiplied by 4 for the annualized figure.
-- **Lee et al. (2021):** the reported absolute estimate is converted from the paper’s population normalization to deaths per 100,000 and then annualized from quarterly to yearly units.
+- **Lee et al. (2021):** the reported absolute estimate is converted from the paper's population normalization to deaths per 100,000 and then annualized from quarterly to yearly units.
 
 ## Repository contents
 
 - `data/effects.csv` — final plotted estimates and study URLs.
 - `code/plot_effects.R` — R code that defines the plotted data and regenerates both figures.
-- `figures/relative_effects.png` — relative-effect forest plot.
-- `figures/annualized_absolute_effects.png` — annualized absolute-effect forest plot.
+- `figures/relative_effects.svg` — relative-effect forest plot.
+- `figures/annualized_absolute_effects.svg` — annualized absolute-effect forest plot.
 
 ## Reproducing the figures
 
@@ -89,4 +89,4 @@ The R script requires `dplyr`, `ggplot2`, and `readr`. From the repository root:
 source("code/plot_effects.R")
 ```
 
-The script writes the two PNG files to the current working directory. The committed PNGs are the versions produced during this review.
+The R script regenerates equivalent PNG versions of the figures under `figures/` and writes a reproduced copy of the plotted data to `data/effects_reproduced.csv`.
