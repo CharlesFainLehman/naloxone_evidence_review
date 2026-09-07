@@ -11,10 +11,10 @@ The starting point was Khezri et al. (2026), *Illicit drug supply, naloxone avai
 The study set was built iteratively:
 
 1. Extract experimental and quasi-experimental mortality studies from the Health Affairs Scholar review.
-2. Drop uncontrolled interrupted-time-series analyses and other designs without a comparison group.
-3. Permit studies described as ITS when the estimate is actually identified relative to a comparison group.
-4. Add quasi-experimental studies outside the review, including Walley (2013), Rees et al. (2019), Atkins et al. (2019), Erfanian et al. (2019), Duska et al. (2022), Peet et al. (2024), and Payne (2026).
-5. Exclude Xuan et al. (2024) and Newman et al. (2025) after fixed effects could not be verified / were absent under the requested inclusion threshold.
+2. Exclude uncontrolled interrupted-time-series analyses and other designs without a sufficiently strong counterfactual.
+3. For interrupted-time-series / controlled interrupted-time-series studies, require unit fixed effects or an equivalent design-based control structure for inclusion in the main analyses.
+4. Add quasi-experimental studies outside the review, including Rees et al. (2019), Atkins et al. (2019), Erfanian et al. (2019), Duska et al. (2022), Peet et al. (2024), and Payne (2026).
+5. Move Walley et al. (2013), Toce et al. (2024), Xuan et al. (2024), and Newman et al. (2025) to an appendix because their ITS/CITS specifications did not meet that control criterion.
 6. Focus the final figures on overdose mortality rather than ED visits or hospitalizations.
 
 This is a working review rather than a formal meta-analysis. The rows are not statistically pooled, and multiple estimates from the same study/trial are displayed separately when substantively useful.
@@ -39,8 +39,6 @@ Absolute rate differences are placed on a common annualized scale: deaths per 10
 
 | Study | Design | Effect scale | Estimate | 95% CI | Notes | Study |
 |---|---|---|---:|---:|---|---|
-| Walley 2013 — lower-intensity OEND | Controlled community comparison | Relative (%) | -27.0% | -43.0% to -9.0% | Massachusetts OEND; lower-intensity exposure. | [link](https://www.bmj.com/content/346/bmj.f174) |
-| Walley 2013 — higher-intensity OEND | Controlled community comparison | Relative (%) | -46.0% | -61.0% to -24.0% | Massachusetts OEND; higher-intensity exposure. | [link](https://www.bmj.com/content/346/bmj.f174) |
 | Rees et al. 2019 | DID / controlled pre-post | Relative (%) | -9.0% | -16.0% to -2.0% | State naloxone access laws. | [link](https://chicagounbound.uchicago.edu/jle/vol62/iss1/1/) |
 | Cataife et al. 2021† | Matched staggered DID | Relative (%) | -0.2% | -20.5% to 25.3% | Homogeneous nationwide model used for scalar display; authors prefer a heterogeneous dynamic specification. | [link](https://pubmed.ncbi.nlm.nih.gov/31951788/) |
 | McClellan et al. 2018 | DID | Relative (%) | -14.0% | -22.0% to -1.0% | State naloxone access laws. | [link](https://pubmed.ncbi.nlm.nih.gov/29610001/) |
@@ -72,9 +70,15 @@ Absolute rate differences are placed on a common annualized scale: deaths per 10
 - **Peet et al. (2024):** the three plotted absolute estimates use the +LASSO specification in Table 3. Quarterly coefficients and confidence intervals are multiplied by 4 for the annualized figure.
 - **Lee et al. (2021):** the reported absolute estimate is converted from the paper's population normalization to deaths per 100,000 and then annualized from quarterly to yearly units.
 
+## Appendix
+
+Interrupted-time-series and controlled interrupted-time-series studies that were considered but excluded from the main analyses under the stricter control criterion are listed in [`appendix/excluded_its.md`](appendix/excluded_its.md). The underlying table is also available as [`data/excluded_its.csv`](data/excluded_its.csv).
+
 ## Repository contents
 
 - `data/effects.csv` — final plotted estimates and study URLs.
+- `data/excluded_its.csv` — ITS/CITS studies excluded from the main analyses under the control criterion.
+- `appendix/excluded_its.md` — appendix table with exclusion reasons and reported mortality results.
 - `code/plot_effects.R` — R code that defines the plotted data, applies the CF house style, and regenerates both figures.
 - `figures/relative_effects.svg` — relative-effect forest plot.
 - `figures/annualized_absolute_effects.svg` — annualized absolute-effect forest plot.
