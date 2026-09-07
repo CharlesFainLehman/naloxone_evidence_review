@@ -1,5 +1,7 @@
 # Review of the naloxone evidence table
 
+*Review conducted by Anthropic's Claude, working in Claude Code, on 7 September 2026 at the request of the repository owner. Source papers were read and numbers re-derived by the model; the owner supplied PDFs where publisher sites were inaccessible. Treat this as an AI-generated audit, not a human peer review.*
+
 Scope: every row in `data/effects.csv` and `data/excluded_its.csv` was checked against the source paper (full text where obtainable, otherwise abstract), the Khezri et al. (2026) review was cross-checked for omissions, and a broad search was run for quasi-experimental naloxone-mortality studies outside the review (economics working papers, public-health journals, international programs, 2024–2026 output). Code and figures were checked for internal consistency.
 
 Full text was obtained for: Rees (NBER WP version), McClellan, Atkins, Erfanian, Cataife, Abouk, Doleac & Mukherjee (published JLE version), HEALing Communities, Freisthler, Payne, Lee (plus replication code), Peet, Walley 2013, Toce, Xuan, Newman, Zang. Abstract only (publisher sites blocked from this environment): Dowd, Duska, Sohn, Taylor, and the published JLE tables of Rees.

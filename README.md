@@ -1,6 +1,6 @@
 # Naloxone access and overdose mortality evidence review
 
-***This text and repository were originally written by OpenAI's ChatGPT. Every study row was subsequently verified against the source paper and corrected; the verification record is in [`REVIEW.md`](REVIEW.md).***
+***This text and repository were originally written by OpenAI's ChatGPT. The study-by-study verification, corrections, additional literature search, and current figures were done by Anthropic's Claude, working in Claude Code under the direction of the repository owner; the verification record is in [`REVIEW.md`](REVIEW.md). Neither the original nor the revision has been independently checked by a human reviewer.***
 
 This repository contains a working evidence table, figures, and R code for experimental and quasi-experimental studies estimating the effect of naloxone access or distribution on overdose mortality.
 
