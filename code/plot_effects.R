@@ -47,8 +47,6 @@ cf_save <- function(p, stem) {
 
 relative <- tibble::tribble(
   ~study, ~estimate, ~lower, ~upper,
-  "Walley 2013 — lower-intensity OEND", -27.0, -43.0, -9.0,
-  "Walley 2013 — higher-intensity OEND", -46.0, -61.0, -24.0,
   "Rees et al. 2019", -9.0, -16.0, -2.0,
   "Cataife et al. 2021†", -0.2, -20.5, 25.3,
   "McClellan et al. 2018", -14.0, -22.0, -1.0,
