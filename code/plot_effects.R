@@ -3,7 +3,14 @@ library(ggplot2)
 library(readr)
 library(scales)
 
+# Labels contain non-ASCII characters; make sure the session is UTF-8 so ragg/svg render them.
+if (!grepl("UTF-8", Sys.getlocale("LC_CTYPE"), ignore.case = TRUE)) {
+  try(Sys.setlocale("LC_CTYPE", "C.UTF-8"), silent = TRUE)
+}
+
+# ---------------------------------------------------------------------------
 # Palette / house style
+# ---------------------------------------------------------------------------
 cf_ink    <- "#111111"
 cf_mute   <- "#8A8A8A"
 cf_grid   <- "#E8E8E8"
@@ -35,7 +42,7 @@ theme_cf <- function(title_size = 36) {
 }
 
 cf_caption <- function(source) {
-  paste0("Source: ", source, "\nChart created with the help of ChatGPT.")
+  paste0("Source: ", source, "\nChart created with the help of ChatGPT and Claude.")
 }
 
 cf_save <- function(p, stem) {
@@ -45,43 +52,191 @@ cf_save <- function(p, stem) {
          width = 16, height = 9, units = "in", bg = "white")
 }
 
-relative <- tibble::tribble(
-  ~study, ~estimate, ~lower, ~upper,
-  "Rees et al. 2019", -9.0, -16.0, -2.0,
-  "Cataife et al. 2021†", -0.2, -20.5, 25.3,
-  "McClellan et al. 2018", -14.0, -22.0, -1.0,
-  "Atkins et al. 2019", 10.0, -6.0, 29.0,
-  "Erfanian et al. 2019", 3.0, -11.0, 18.0,
-  "Abouk et al. 2019‡", -34.0, -57.5, -10.4,
-  "Doleac & Mukherjee 2022", 1.0, -8.0, 10.0,
-  "Sohn et al. 2023§", -16.0, -28.1, -3.9,
-  "Dowd 2023 — 2018 giveaway", -14.7, -31.0, 5.6,
-  "Dowd 2023 — 2019 giveaway", 26.7, -1.5, 62.9,
-  "HEALing Communities 2024¶", -9.0, -24.0, 9.0,
-  "Freisthler et al. 2024¶", -8.0, -22.0, 7.0
+# ---------------------------------------------------------------------------
+# Conversion helpers. Every derived number in the tables is produced here so
+# the derivation is inspectable.
+# ---------------------------------------------------------------------------
+
+# Percent change and 95% CI from a log-scale coefficient and standard error.
+pct_from_log <- function(b, se) {
+  c((exp(b) - 1), (exp(b - 1.96 * se) - 1), (exp(b + 1.96 * se) - 1)) * 100
+}
+
+# Percent change and 95% CI from a reported rate ratio and a two-sided p-value
+# (used when the paper prints a ratio and a p-value but no interval).
+pct_from_ratio_p <- function(rr, p) {
+  b  <- log(rr)
+  se <- abs(b) / qnorm(1 - p / 2)
+  pct_from_log(b, se)
+}
+
+# Percent change and 95% CI from an absolute effect (with CI) and a baseline mean.
+pct_from_abs <- function(est, lo, hi, base) c(est, lo, hi) / base * 100
+
+# Point and 95% CI from an estimate and a two-sided p-value (level coefficient).
+ci_from_p <- function(est, p) {
+  se <- abs(est) / qnorm(1 - p / 2)
+  c(est, est - 1.96 * se, est + 1.96 * se)
+}
+
+# Point and 95% CI from an estimate and standard error.
+ci_from_se <- function(est, se) c(est, est - 1.96 * se, est + 1.96 * se)
+
+row3 <- function(study, v, ...) {
+  tibble::tibble(study = study, estimate = v[1], lower = v[2], upper = v[3], ...)
+}
+
+# ---------------------------------------------------------------------------
+# Relative effects (percent change in overdose mortality)
+# ---------------------------------------------------------------------------
+relative <- bind_rows(
+  row3("McClellan et al. 2018",
+       pct_from_ratio_p(0.86, 0.033),
+       policy = "Naloxone access law",
+       outcome = "Opioid overdose deaths",
+       derivation = "IRR 0.86 and p = 0.033 from text; no CI printed in the paper; CI derived from the p-value",
+       study_url = "https://pubmed.ncbi.nlm.nih.gov/29610001/"),
+  row3("Rees et al. 2019",
+       pct_from_log(-0.095, 0.038),
+       policy = "Naloxone access law",
+       outcome = "Opioid-related deaths (multiple-cause T-codes)",
+       derivation = "exp(b) - 1 from Poisson coefficient -0.095 (SE 0.038), NBER WP 23171 Table 3 col. 3; authors report 9-11% (WP) / 9-10% (JLE)",
+       study_url = "https://chicagounbound.uchicago.edu/jle/vol62/iss1/1/"),
+  row3("Atkins et al. 2019",
+       pct_from_log(0.0943, 0.0805),
+       policy = "Naloxone access law (any naloxone policy)",
+       outcome = "Opioid overdose deaths (T40.1-T40.4, T40.6)",
+       derivation = "exp(b) - 1 from Poisson coefficient 0.0943 (SE 0.0805), Table 4 Panel B",
+       study_url = "https://pmc.ncbi.nlm.nih.gov/articles/PMC6407344/"),
+  row3("Abouk et al. 2019‡",
+       pct_from_abs(-0.387, -0.656, -0.119, 1.14),
+       policy = "Naloxone access law (direct pharmacist authority)",
+       outcome = "Opioid overdose deaths",
+       derivation = "Absolute effect -0.387 (-0.656, -0.119) per 100k per month, 3+ years post, divided by comparison mean 1.14",
+       study_url = "https://pmc.ncbi.nlm.nih.gov/articles/PMC6503576/"),
+  row3("Cataife et al. 2021†",
+       pct_from_log(-0.002, 0.116),
+       policy = "Naloxone access law",
+       outcome = "Opioid-related deaths",
+       derivation = "exp(b) - 1 from OLS coefficient -0.002 (SE 0.116), Table 1 Model 1 (homogeneous static model)",
+       study_url = "https://pubmed.ncbi.nlm.nih.gov/31951788/"),
+  row3("Doleac & Mukherjee 2022",
+       pct_from_abs(0.006, 0.006 - 1.96 * 0.027, 0.006 + 1.96 * 0.027, 0.601),
+       policy = "Naloxone access law (third-party or standing order)",
+       outcome = "Opioid-related deaths, urban counties",
+       derivation = "Level coefficient 0.006 (SE 0.027) on 2010 baseline 0.601 per 100k per month, JLE Table 4",
+       study_url = "https://www.journals.uchicago.edu/doi/10.1086/719588"),
+  row3("Sohn et al. 2023§",
+       c(-16.0, -28.1, -3.9),
+       policy = "Naloxone co-prescribing mandate",
+       outcome = "Prescription/treatment-opioid overdose deaths",
+       derivation = "Absolute effect -8.61 (-15.13, -2.09) per state-quarter, stated as a 16% reduction; CI scaled proportionally. Abstract only; full text pending",
+       study_url = "https://www.sciencedirect.com/science/article/abs/pii/S0749379722005281"),
+  row3("Dowd 2023 — 2018 giveaway",
+       c(-14.7, -31.0, 5.6),
+       policy = "Naloxone giveaway (distribution event)",
+       outcome = "Opioid overdose deaths, Philadelphia and Pittsburgh",
+       derivation = "Implied exp(b) - 1 with b = -0.158 (SE 0.109); not yet verified against full text",
+       study_url = "https://onlinelibrary.wiley.com/doi/full/10.1002/hec.4755"),
+  row3("Dowd 2023 — 2019 giveaway",
+       c(26.7, -1.5, 62.9),
+       policy = "Naloxone giveaway (distribution event)",
+       outcome = "Opioid overdose deaths, Philadelphia and Pittsburgh",
+       derivation = "Implied exp(b) - 1 with b = 0.236 (SE 0.128); not yet verified against full text",
+       study_url = "https://onlinelibrary.wiley.com/doi/full/10.1002/hec.4755"),
+  row3("HEALing Communities 2024¶",
+       (c(0.91, 0.76, 1.09) - 1) * 100,
+       policy = "Multicomponent cluster RCT",
+       outcome = "Opioid overdose deaths",
+       derivation = "Adjusted rate ratio 0.91 (0.76-1.09), Table 3",
+       study_url = "https://www.nejm.org/doi/full/10.1056/NEJMoa2401177"),
+  row3("Freisthler et al. 2024¶",
+       (c(0.92, 0.78, 1.07) - 1) * 100,
+       policy = "Multicomponent cluster RCT",
+       outcome = "All-drug overdose deaths",
+       derivation = "Adjusted rate ratio 0.92 (0.78-1.07)",
+       study_url = "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2825142"),
+  row3("Spackman et al. 2025 — per 10,000 kits",
+       c(-23.9, -33.7, -12.6),
+       policy = "Take-home naloxone distribution (Alberta)",
+       outcome = "Opioid-related deaths",
+       derivation = "As reported: 23.9% (12.6-33.7) reduction per 10,000 kits in circulation; dose-response, not a binary policy effect",
+       study_url = "https://pubmed.ncbi.nlm.nih.gov/40459670/")
 )
 
-payne_est <- 2.12
-payne_se <- 1.40
-
-absolute <- tibble::tribble(
-  ~study, ~estimate, ~lower, ~upper, ~scaling,
-  "Duska et al. 2022", -0.05, -0.43, 0.33, "Annual estimate",
-  "Payne 2026", payne_est, payne_est - 1.96 * payne_se, payne_est + 1.96 * payne_se, "Annual estimate",
-  "Lee et al. 2021", (1344.3 / 3000) * 4, (627.1 / 3000) * 4, (2061.6 / 3000) * 4, "Quarterly × 4",
-  "Peet et al. 2024 — NAL pre-Narcan", -0.074 * 4, (-0.074 - 1.96 * 0.094) * 4, (-0.074 + 1.96 * 0.094) * 4, "Quarterly × 4",
-  "Peet et al. 2024 — Narcan + existing NAL", -0.143 * 4, (-0.143 - 1.96 * 0.075) * 4, (-0.143 + 1.96 * 0.075) * 4, "Quarterly × 4",
-  "Peet et al. 2024 — NAL adopted after Narcan", -0.635 * 4, (-0.635 - 1.96 * 0.192) * 4, (-0.635 + 1.96 * 0.192) * 4, "Quarterly × 4"
+# ---------------------------------------------------------------------------
+# Absolute effects (deaths per 100,000 per year)
+# ---------------------------------------------------------------------------
+absolute <- bind_rows(
+  row3("Erfanian et al. 2019 — direct effect",
+       ci_from_p(0.238, 0.554),
+       scaling = "Annual estimate",
+       policy = "Naloxone access law",
+       outcome = "Opioid overdose deaths per 100k (state-year)",
+       derivation = "Direct effect 0.238 (p = 0.554), Table 6 Model 1; CI derived from p-value. Indirect (spillover) effect 5.767 (p < 0.001) not plotted",
+       study_url = "https://rrs.scholasticahq.com/article/7932-the-impact-of-naloxone-access-laws-on-opioid-overdose-deaths-in-the-u-s"),
+  row3("Lee et al. 2021",
+       c(1344.3, 627.1, 2061.6) / 3000 * 4,
+       scaling = "Quarterly × 4",
+       policy = "Naloxone access law",
+       outcome = "All-drug overdose deaths",
+       derivation = "1344.3 (627.1-2061.6) per 300 million per quarter, pooled over leads 0-12; divided by 3000 for per 100k and multiplied by 4",
+       study_url = "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2776301"),
+  row3("Duska et al. 2022",
+       c(-0.05, -0.43, 0.33),
+       scaling = "Annual estimate",
+       policy = "Naloxone co-prescribing mandate (AZ, FL, RI, VT, VA)",
+       outcome = "Opioid-related deaths",
+       derivation = "As reported in abstract; units and CI method pending full text",
+       study_url = "https://journals.sagepub.com/doi/10.1177/20503245221112575"),
+  row3("Rudolph et al. 2022 — sign reversed",
+       -c(1.51, 3.18, -0.159),
+       scaling = "Annual estimate",
+       policy = "Naloxone access law",
+       outcome = "Opioid overdose deaths per 100k aged 12+, 2018",
+       derivation = "Effect of delaying enactment by one year: +1.51 (-0.16, 3.18); sign reversed so negative means earlier enactment lowers deaths",
+       study_url = "https://pmc.ncbi.nlm.nih.gov/articles/PMC9373236/"),
+  row3("Peet et al. 2024 — NAL adopted 2010–15",
+       ci_from_se(-0.074, 0.094) * 4,
+       scaling = "Quarterly × 4",
+       policy = "Naloxone access law (dispensing)",
+       outcome = "Non-synthetic opioid deaths, age-adjusted",
+       derivation = "Table 3 Panel B +LASSO: -0.074 (SE 0.094) per 100k per quarter, 2010-2015 sample",
+       study_url = "https://www.nber.org/papers/w33105"),
+  row3("Peet et al. 2024 — Narcan introduction, NAL states",
+       ci_from_se(-0.143, 0.075) * 4,
+       scaling = "Quarterly × 4",
+       policy = "Narcan nasal spray introduction (2016) in states with an NAL",
+       outcome = "Non-synthetic opioid deaths, age-adjusted",
+       derivation = "Table 3 Panel B +LASSO: -0.143 (SE 0.075) per 100k per quarter, 2010-2019 sample",
+       study_url = "https://www.nber.org/papers/w33105"),
+  row3("Peet et al. 2024 — NAL adopted 2016–19",
+       ci_from_se(-0.635, 0.192) * 4,
+       scaling = "Quarterly × 4",
+       policy = "Naloxone access law (dispensing)",
+       outcome = "Non-synthetic opioid deaths, age-adjusted",
+       derivation = "Table 3 Panel B +LASSO: -0.635 (SE 0.192) per 100k per quarter, 2016-2019 sample",
+       study_url = "https://www.nber.org/papers/w33105"),
+  row3("Payne 2026",
+       ci_from_se(2.12, 1.40),
+       scaling = "Annual estimate",
+       policy = "County naloxone kit distribution grant (Indiana)",
+       outcome = "Opioid-related deaths",
+       derivation = "Table 2 Panel B col. 2: 2.12 (SE 1.40), TWFE; CI is +/- 1.96 SE (author uses 2.0)",
+       study_url = "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7279243")
 )
 
+# ---------------------------------------------------------------------------
+# Plotting
+# ---------------------------------------------------------------------------
 forest_cf <- function(dat, title, subtitle, xlab, caption, accent,
                       xlim = NULL, percent_axis = FALSE) {
   p <- dat %>%
     mutate(study = factor(study, levels = rev(study))) %>%
     ggplot(aes(x = estimate, y = study)) +
     geom_vline(xintercept = 0, color = cf_axis, linewidth = 0.7) +
-    geom_errorbarh(aes(xmin = lower, xmax = upper),
-                   height = 0.13, linewidth = 1.1, color = accent) +
+    geom_errorbar(aes(xmin = lower, xmax = upper), orientation = "y",
+                  width = 0.13, linewidth = 1.1, color = accent) +
     geom_point(size = 4.2, color = accent) +
     labs(
       title = title,
@@ -111,7 +266,7 @@ p_relative <- forest_cf(
   title = "Naloxone access and overdose mortality",
   subtitle = "Relative effects; negative values indicate lower mortality",
   xlab = "Estimated change in overdose mortality",
-  caption = cf_caption("studies listed in README; calculations described in code/plot_effects.R."),
+  caption = cf_caption("studies listed in README; derivations in code/plot_effects.R. Spackman is a dose-response effect per 10,000 kits."),
   accent = cf_blue,
   xlim = c(-68, 70),
   percent_axis = TRUE
@@ -122,9 +277,9 @@ p_absolute <- forest_cf(
   title = "Naloxone access and overdose mortality",
   subtitle = "Annualized absolute effects; negative values indicate lower mortality",
   xlab = "Annualized change in overdose deaths per 100,000",
-  caption = cf_caption("studies listed in README; quarterly estimates annualized ×4."),
+  caption = cf_caption("studies listed in README; quarterly estimates annualized ×4. Rudolph estimates a one-year enactment delay, shown with sign reversed."),
   accent = cf_orange,
-  xlim = c(-4, 5.5),
+  xlim = c(-4.5, 5.5),
   percent_axis = FALSE
 )
 
@@ -135,7 +290,9 @@ cf_save(p_relative, "figures/relative_effects")
 cf_save(p_absolute, "figures/annualized_absolute_effects")
 
 bind_rows(
-  relative %>% mutate(panel = "Relative (%)", unit = "percent", scaling = "As reported"),
+  relative %>% mutate(panel = "Relative (%)", unit = "percent", scaling = "See derivation"),
   absolute %>% mutate(panel = "Annualized absolute", unit = "deaths per 100k per year")
 ) %>%
-  write_csv("data/effects_reproduced.csv")
+  mutate(across(c(estimate, lower, upper), ~ round(.x, 2))) %>%
+  select(study, estimate, lower, upper, panel, unit, scaling, policy, outcome, derivation, study_url) %>%
+  write_csv("data/effects.csv")

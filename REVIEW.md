@@ -4,6 +4,17 @@ Scope: every row in `data/effects.csv` and `data/excluded_its.csv` was checked a
 
 Full text was obtained for: Rees (NBER WP version), McClellan, Atkins, Erfanian, Cataife, Abouk, Doleac & Mukherjee (published JLE version), HEALing Communities, Freisthler, Payne, Lee (plus replication code), Peet, Walley 2013, Toce, Xuan, Newman, Zang. Abstract only (publisher sites blocked from this environment): Dowd, Duska, Sohn, Taylor, and the published JLE tables of Rees.
 
+## 0. Status of corrections
+
+All findings in sections 1–4 have been applied in the repository (commit following this note):
+
+- `code/plot_effects.R` is now the source of truth. It performs every conversion with named helper functions, writes `data/effects.csv` with `policy`, `outcome`, and `derivation` columns, and regenerates both figures (PNG and SVG). Erfanian moved to the absolute panel as its direct effect; McClellan and Erfanian CIs are derived from the reported p-values; Doleac & Mukherjee uses the published Table 4; labels for Sohn, Duska, Payne, Peet, Lee, and Freisthler state the policy and outcome.
+- Rudolph et al. (2022) and Spackman et al. (2025) were added to the main figures with footnotes.
+- Eleven studies were added to the appendix (Bird 2016, Naumann 2019, Hamilton 2021, Antoniou 2022, Morgan 2022, Allen 2022, Tabatabai 2023, Yeung 2023, Håkansson 2024, Walley 2026, Goodman 2026), and the Newman, Toce, and Taylor rows were corrected. Every new number was checked against the paper's abstract or full text.
+- README rewritten to match; duplicate column header removed.
+
+Rows still awaiting full text (values unchanged from the original coding, flagged "pending" in the data): Dowd 2023, Duska 2022, Sohn 2023, Taylor 2022, and the published JLE tables for Rees 2019. Section 6 lists what is needed.
+
 ## 1. Headline findings
 
 1. **Nine of twelve relative-effect rows were not taken from the papers.** Rees, McClellan, Atkins, Erfanian, and Doleac & Mukherjee reproduce, digit for digit, the ratio entries in Table 3 of Smart, Pardo & Davis (2021, *Addiction*). Abouk and Sohn are conversions from absolute effects. Dowd's percentages are exp(β)−1 conversions of log coefficients. `data/effects.csv` labels all of these "As reported"; none of the papers prints those percentages or CIs.
