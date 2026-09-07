@@ -1,0 +1,17 @@
+# Appendix: ITS/CITS studies excluded from the main analyses
+
+These studies were considered during the review but excluded from the main figures under the stricter control rule used here. For ITS/CITS designs, the main analysis requires unit fixed effects or an equivalent design-based strategy that controls for stable differences across units. This appendix is not a claim that the studies are uninformative; it records why they were not pooled with the more rigorous quasi-experimental estimates.
+
+| Study | Design / data | Comparison structure | Reported mortality result | Why excluded from main analysis | Study |
+|---|---|---|---|---|---|
+| Walley et al. 2013 | Interrupted time series; 19 Massachusetts communities, 2002–2009 | Community-year strata with low/high OEND implementation compared with strata with no implementation | ARR 0.73 (95% CI 0.57–0.91) for 1–100 enrollments/100k; ARR 0.54 (0.39–0.76) for >100 enrollments/100k | Poisson model adjusted for measured community-level covariates, but the published statistical specification does not include community fixed effects. | [BMJ](https://www.bmj.com/content/346/bmj.f174) |
+| Toce et al. 2024 | Interrupted time series; state-level youth opioid deaths, 1999–2021 | States grouped by type of naloxone access law; population-averaged negative-binomial ITS | Postimplementation IRR 0.97 (0.91–1.04) for patient-specific laws; 1.01 (0.96–1.06) for patient-nonspecific laws | Published methods describe population-averaged negative-binomial models; no state fixed effects are reported. | [JAMA Pediatrics](https://jamanetwork.com/journals/jamapediatrics/fullarticle/2824897) |
+| Xuan et al. 2024 | Multisite interrupted time series; 351 Massachusetts municipalities, 2013–2018 | Municipalities that implemented pharmacy standing-order naloxone compared with municipalities that did not | Annualized RR 0.84 (95% CI 0.78–0.91) for the postimplementation slope; no significant immediate level change | Segmented Poisson GEE adjusted for measured municipal covariates, but no municipality fixed effects. | [JAMA Network Open](https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2822958) |
+| Newman et al. 2025 | Controlled interrupted time series; St. Louis City, St. Louis County, and collar counties, 2011–2022 | Three regional time series compared using ARIMA/CITS | St. Louis City showed an immediate decrease of about 2.17 opioid-overdose deaths/100k/month when naloxone distribution began; effects were not comparable across all regions | ARIMA CITS compares regional trajectories but does not use unit fixed effects or a panel design that absorbs stable unit differences. | [Journal of Substance Use & Addiction Treatment](https://www.jsatjournal.com/article/S2949-8759%2824%2900276-5/fulltext) |
+
+## Notes
+
+- **Walley et al. (2013):** the paper calls the design an interrupted time series and compares implementation intensity across community-year strata. Its statistical methods describe Poisson regression with community-level covariates rather than community fixed effects.
+- **Toce et al. (2024):** the analysis is population-averaged, not a state-fixed-effects panel model.
+- **Xuan et al. (2024):** the presence of nonimplementing municipalities provides a comparison series, but the reported GEE specification still estimates population-average effects without municipality fixed effects.
+- **Newman et al. (2025):** this is a genuine controlled ITS, but the control is through comparison of a small number of regional time series rather than unit fixed effects.
