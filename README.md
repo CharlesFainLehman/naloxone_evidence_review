@@ -1,5 +1,7 @@
 # Naloxone access and overdose mortality evidence review
 
+***This text and repository were written by OpenAI's ChatGPT.***
+
 This repository contains a working evidence table, figures, and R code for experimental and quasi-experimental studies estimating the effect of naloxone access or distribution on overdose mortality.
 
 The starting point was Khezri et al. (2026), *Illicit drug supply, naloxone availability, and overdose mortality in the fentanyl era: a systematic review* ([Health Affairs Scholar](https://academic.oup.com/healthaffairsscholar/article/4/4/qxag074/8544909)). Additional quasi-experimental papers were added when they appeared to satisfy the working inclusion criteria.
