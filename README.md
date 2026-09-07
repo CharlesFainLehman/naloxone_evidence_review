@@ -14,7 +14,7 @@ The study set was built iteratively:
 2. Exclude uncontrolled interrupted-time-series analyses and other designs without a sufficiently strong counterfactual.
 3. For interrupted-time-series / controlled interrupted-time-series studies, require unit fixed effects or an equivalent design-based control structure for inclusion in the main analyses.
 4. Add quasi-experimental studies outside the review, including Rees et al. (2019), Atkins et al. (2019), Erfanian et al. (2019), Duska et al. (2022), Peet et al. (2024), and Payne (2026).
-5. Move Walley et al. (2013), Toce et al. (2024), Xuan et al. (2024), and Newman et al. (2025) to an appendix because their ITS/CITS specifications did not meet that control criterion.
+5. Move Walley et al. (2013), Taylor et al. (2022), Toce et al. (2024), Xuan et al. (2024), and Newman et al. (2025) to an appendix because their ITS/CITS specifications did not meet that control criterion.
 6. Focus the final figures on overdose mortality rather than ED visits or hospitalizations.
 
 This is a working review rather than a formal meta-analysis. The rows are not statistically pooled, and multiple estimates from the same study/trial are displayed separately when substantively useful.
