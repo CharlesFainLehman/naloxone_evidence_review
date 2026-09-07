@@ -15,7 +15,7 @@ All findings in sections 1–4 have been applied in the repository (commit follo
 - Eleven studies were added to the appendix (Bird 2016, Naumann 2019, Hamilton 2021, Antoniou 2022, Morgan 2022, Allen 2022, Tabatabai 2023, Yeung 2023, Håkansson 2024, Walley 2026, Goodman 2026), and the Newman, Toce, and Taylor rows were corrected. Every new number was checked against the paper's abstract or full text.
 - README rewritten to match; duplicate column header removed.
 
-Rows still awaiting full text (values unchanged from the original coding, flagged "pending" in the data): Dowd 2023, Duska 2022, Sohn 2023, Taylor 2022, and the published JLE tables for Rees 2019. Section 6 lists what is needed.
+Second pass with owner-supplied PDFs (Rees JLE, Dowd, Duska, Toce supplement, Alexeev): Dowd's two rows are confirmed exactly against Table 2 (IRR 0.853 and 1.267) and the pooled null is confirmed. Rees's published Poisson coefficient is −0.095 (SE 0.039), so the CI became −15.7% to −1.8%. Duska's estimate turned out to be per 100,000 per **month** (state-month generalized synthetic control), not per year; the row is now multiplied by 12 (−0.60, −5.16 to 3.96). Toce's supplement confirms a GEE with no state fixed effects. Alexeev does not re-estimate mortality because the restricted mortality files are not in the replication package. Still awaiting full text: Sohn 2023 and Taylor 2022.
 
 ## 1. Headline findings
 
